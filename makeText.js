@@ -4,15 +4,15 @@ const markov = require("./markov");
 const axios = require("axios");
 const process = require("process");
 
-/** Make Markov machine from text and generate text from it. */
+// Make Markov machine from text and create text
 
-function generateText(text) {
+function createText(text) {
     let mm = new markov.MarkovMachine(text);
     console.log(mm.makeText());
   }
   
   
-  /** read file and generate text from it. */
+  /** read file and make text from it. */
   
   function makeText(path) {
     fs.readFile(path, "utf8", function cb(err, data) {
@@ -20,14 +20,14 @@ function generateText(text) {
         console.error(`Cannot read file: ${path}: ${err}`);
         process.exit(1);
       } else {
-        generateText(data);
+        createText(data);
       }
     });
   
   }
   
   
-  /** read URL and make text from it. */
+  // read URL and make text from it
   
   
   async function makeURLText(url) {
@@ -39,11 +39,11 @@ function generateText(text) {
       console.error(`Cannot read URL: ${url}: ${err}`);
       process.exit(1);
     }
-    generateText(resp.data)
+    createText(resp.data)
   }
   
   
-  /** interpret cmdline to decide what to do. */
+  // interpret command line to decide what to do
   
   let [method, path] = process.argv.slice(2);
   
